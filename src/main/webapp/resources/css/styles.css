@@ -1,0 +1,95 @@
+.fishies {
+	border: thin solid black;
+}
+
+.fishHeader {
+	text-align: center;
+	font-style: italic;
+	color: Snow;
+	background: Teal;
+}
+
+.fishFooter {
+	font-size: 0.75em;
+	text-align: center;
+	background: PowderBlue;
+}
+
+.fishId {
+	height: 25px;
+	text-align: center;
+	background: MediumTurquoise;
+}
+
+.commonName {
+	text-align: left;
+	background: PowderBlue;
+}
+
+.latinName {
+	width: 6em;
+	text-align: left;
+	color: Black;
+	background: MediumTurquoise;
+}
+
+.speciesOrigin {
+	width: 3em;
+	text-align: center;
+	color: Black;
+	background: PowderBlue;
+}
+
+.kh {
+	width: 3em;
+	text-align: center;
+	color: Black;
+	background: MediumTurquoise;
+}
+
+.ph {
+	width: 9em;
+	text-align: center;
+	color: Black;
+	background: PowderBlue;
+}
+
+.fishSize {
+	width: 3em;
+	text-align: center;
+	color: Black;
+	background: MediumTurquoise;
+}
+
+.stocking {
+	width: 6em;
+	text-align: center;
+	background: PowderBlue;
+}
+
+.tankSize {
+	width: 6em;
+	text-align: center;
+	background: PowderBlue;
+}
+.diet {
+	width: 6em;
+	text-align: center;
+	background: PowderBlue;
+}
+
+.temp {
+	width: 6em;
+	text-align: center;
+	background: PowderBlue;
+}
+
+.oddrow{
+	text-align:center;
+	background:#FFFFFFF;
+}
+
+.evenrow{
+	text-align:center;
+	background:#33FF99;
+}
