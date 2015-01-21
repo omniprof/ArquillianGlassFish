@@ -30,7 +30,7 @@ public class FishActionBeanJPA implements Serializable {
     @Resource
     private UserTransaction userTransaction;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "fishies")
     private EntityManager entityManager;
 
     public List<Fish> getAll() throws SQLException {

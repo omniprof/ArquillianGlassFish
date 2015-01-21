@@ -1,7 +1,6 @@
 /*
  * A sample test class using Arquillian
  */
-
 package com.kenfogel.test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -33,40 +32,38 @@ import java.util.Scanner;
 @RunWith(Arquillian.class)
 public class FishActionBeanTest {
 
-	@Deployment
-	public static WebArchive deploy() {
+    @Deployment
+    public static WebArchive deploy() {
 
 		// Use an alternative to the JUnit assert library called AssertJ
-		// Need to reference MySQL driver as it is not part of either
-		// embedded or remote TomEE
-		final File[] dependencies = Maven
-				.resolver()
-				.loadPomFromFile("pom.xml")
-				.resolve("mysql:mysql-connector-java",
-						"org.assertj:assertj-core").withoutTransitivity()
-				.asFile();
+        // Need to reference MySQL driver as it is not part of either
+        // embedded or remote TomEE
+        final File[] dependencies = Maven
+                .resolver()
+                .loadPomFromFile("pom.xml")
+                .resolve("mysql:mysql-connector-java",
+                        "org.assertj:assertj-core").withoutTransitivity()
+                .asFile();
 
 		// For testing Arquillian prefers a resources.xml file over a
-		// context.xml
-		// Actual file name is resources-mysql-ds.xml in the test/resources
-		// folder
-		// The SQL script to create the database is also in this folder
+        // context.xml
+        // Actual file name is resources-mysql-ds.xml in the test/resources
+        // folder
+        // The SQL script to create the database is also in this folder
+        final WebArchive webArchive = ShrinkWrap.create(WebArchive.class)
+                .addPackage(FishActionBeanJPA.class.getPackage())
+                .addPackage(Fish.class.getPackage())
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource("glassfish-resources.xml", "resources.xml")
+                .addAsWebInfResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsResource("createFishMySQL.sql")
+                .addAsLibraries(dependencies);
 
-		final WebArchive webArchive = ShrinkWrap.create(WebArchive.class)
-				.addPackage(FishActionBeanJPA.class.getPackage())
-				.addPackage(Fish.class.getPackage())
-				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addAsWebInfResource("glassfish-resources.xml", "resources.xml")
-				.addAsWebInfResource("META-INF/persistence.xml", "persistence.xml")
-				.addAsResource("createFishMySQL.sql")
-				.addAsLibraries(dependencies);
-                
-                
-		return webArchive;
-	}
+        return webArchive;
+    }
 
-	@Inject
-	private FishActionBeanJPA fab;
+    @Inject
+    private FishActionBeanJPA fab;
 
 //    // Used to rebuild the database
 //    @Resource(name = "jdbc/mydata")
@@ -88,12 +85,11 @@ public class FishActionBeanTest {
 //            throw new RuntimeException("Failed seeding database", e);
 //        }
 //    }
-
-	@Test
-	public void should_find_all_fish() throws Exception {
-		List<Fish> lfd = fab.getAll();
-		assertThat(lfd).hasSize(200);
-	}
+    @Test
+    public void should_find_all_fish() throws Exception {
+        List<Fish> lfd = fab.getAll();
+        assertThat(lfd).hasSize(200);
+    }
 
 //    /**
 //     * The following methods support the seedDatabse method
@@ -135,5 +131,4 @@ public class FishActionBeanTest {
 //        return line.startsWith("--") || line.startsWith("//")
 //                || line.startsWith("/*");
 //    }
-
 }
