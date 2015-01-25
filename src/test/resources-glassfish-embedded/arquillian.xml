@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian
+    http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <engine>
+        <property name="deploymentExportPath">target/</property> 
+    </engine>
+
+    <!--    <group qualifier="Grid" default="true">-->
+ 
+<!--        <container qualifier="remote-gf1" default="true" >-->
+        <container qualifier="arquillian-glassfish-embedded" default="true">
+            <configuration>
+<!--                <property name="adminUser">admin</property>
+                <property name="adminPassword">college</property>
+                <property name="adminHttps">false</property>
+                <property name="adminHost">localhost</property>
+                <property name="adminPort">4848</property>
+                <property name="target">server</property>-->
+                <property name="resourcesXml">src/main/setup/glassfish-resources.xml</property>
+            </configuration>
+        </container>
+    
+<!--        <container qualifier="remote-gf2">-->
+<!--        <container qualifier="glassfish-auth">
+            <configuration>
+                <property name="adminUser">admin</property>
+                <property name="adminPassword">college</property>
+                <property name="adminHttps">false</property>
+                <property name="adminHost">localhost</property>
+                <property name="adminPort">4848</property>-->
+<!--                <property name="serverHttps">false</property>
+                <property name="target">ejb-instance</property>-->
+<!--            </configuration>
+        </container>-->
+        
+<!--        <container qualifier="glassfish" default="true">
+            <configuration>
+                <property name="remoteServerAddress">localhost</property>
+                <property name="remoteServerHttpPort">8080</property>
+                <property name="remoteServerAdminPort">4848</property>
+            </configuration>
+        </container>
+
+           <container qualifier="glassfish-auth">
+               <configuration>
+                   <property name="remoteServerAddress">localhost</property>
+                   <property name="remoteServerHttpPort">8080</property>
+                   <property name="remoteServerAdminPort">4848</property>
+                   <property name="remoteServerAdminUser">admin</property>
+                   <property name="remoteServerAdminPassword">college</property>
+               </configuration>
+           </container>
+    -->
+ 
+ 
+    <!--    </group>-->
+</arquillian>

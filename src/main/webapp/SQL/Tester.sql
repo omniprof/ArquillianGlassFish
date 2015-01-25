@@ -1,0 +1,2 @@
+use aquarium;
+show tables;
