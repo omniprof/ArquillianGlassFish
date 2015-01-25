@@ -55,15 +55,13 @@ public class FishActionBeanTest {
                 .addPackage(FishActionBeanJPA.class.getPackage())
                 .addPackage(Fish.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource("glassfish-resources.xml", "resources.xml")
+                .addAsWebInfResource("META-INF/glassfish-resources.xml", "resources.xml")
                 .addAsWebInfResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsResource("createFishMySQL.sql")
                 .addAsLibraries(dependencies);
 
         return webArchive;
     }
-    
-
 
     @Inject
     private FishActionBeanJPA fab;
@@ -75,9 +73,10 @@ public class FishActionBeanTest {
      * This routine is courtesy of Bartosz Majsak who also solved my Arquillian
      * remote server problem
      */
-    //@Before
+    @Before
     public void seedDatabase() {
         final String seedDataScript = loadAsString("createFishMySQL.sql");
+
         try (Connection connection = ds.getConnection()) {
             for (String statement : splitStatements(new StringReader(
                     seedDataScript), ";")) {
