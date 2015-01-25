@@ -9,7 +9,9 @@ import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+//import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+//import javax.persistence.PersistenceUnit;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -26,15 +28,19 @@ import javax.transaction.UserTransaction;
 @RequestScoped
 public class FishActionBeanJPA implements Serializable {
 
-    private static final long serialVersionUID = 7498237763098271958L;
     @Resource
     private UserTransaction userTransaction;
 
     @PersistenceContext(unitName = "fishies")
     private EntityManager entityManager;
 
+//    @PersistenceUnit(unitName = "fishies")
+//    private EntityManagerFactory entityManagerFactory;    
+    
+    
+    
     public List<Fish> getAll() throws SQLException {
-
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
         // Criteria for Select all records
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Fish> cq = cb.createQuery(Fish.class);
