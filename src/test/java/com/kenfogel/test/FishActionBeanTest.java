@@ -23,12 +23,11 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.io.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import org.jboss.shrinkwrap.api.Archive;
+
 
 @RunWith(Arquillian.class)
 public class FishActionBeanTest {
@@ -55,7 +54,7 @@ public class FishActionBeanTest {
                 .addPackage(FishActionBeanJPA.class.getPackage())
                 .addPackage(Fish.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource("META-INF/glassfish-resources.xml", "resources.xml")
+                //.addAsWebInfResource("src/glassfish-resources.xml","resources.xml")
                 .addAsWebInfResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsResource("createFishMySQL.sql")
                 .addAsLibraries(dependencies);
@@ -66,26 +65,27 @@ public class FishActionBeanTest {
     @Inject
     private FishActionBeanJPA fab;
 
-    @Resource(name = "jdbc/mydata")
-    private DataSource ds;
+//    @Resource(name = "jdbc/mydata")
+//    private DataSource ds;
 
     /**
      * This routine is courtesy of Bartosz Majsak who also solved my Arquillian
      * remote server problem
      */
-    @Before
-    public void seedDatabase() {
-        final String seedDataScript = loadAsString("createFishMySQL.sql");
-
-        try (Connection connection = ds.getConnection()) {
-            for (String statement : splitStatements(new StringReader(
-                    seedDataScript), ";")) {
-                connection.prepareStatement(statement).execute();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed seeding database", e);
-        }
-    }
+    //@Before
+//    public void seedDatabase() {
+//        final String seedDataScript = loadAsString("createFishMySQL.sql");
+//
+//        try (Connection connection = ds.getConnection()) {
+//            for (String statement : splitStatements(new StringReader(
+//                    seedDataScript), ";")) {
+//                connection.prepareStatement(statement).execute();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("Failed seeding database", e);
+//        }
+//    }
 
     @Test
     public void should_find_all_fish() throws Exception {

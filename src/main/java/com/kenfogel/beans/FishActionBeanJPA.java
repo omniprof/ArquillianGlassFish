@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
