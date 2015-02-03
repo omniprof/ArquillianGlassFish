@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
@@ -32,8 +32,8 @@ public class FishActionBeanJPA implements Serializable {
     @Resource
     private UserTransaction userTransaction;
 
-    @PersistenceContext(unitName = "fishies")
-    private EntityManager entityManager;
+    @PersistenceContext(unitName = "fishiesPU")
+    protected EntityManager entityManager;
 
 //    @PersistenceUnit(unitName = "fishies")
 //    private EntityManagerFactory entityManagerFactory;    
