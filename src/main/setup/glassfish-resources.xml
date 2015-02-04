@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
-    <jdbc-resource enabled="true" jndi-name="jdbc/myAquarium" object-type="user" pool-name="aquariumPool">
-        <description/>
-    </jdbc-resource>
-    <jdbc-connection-pool allow-non-component-callers="false" 
+    <jdbc-connection-pool allow-non-component-callers="false"
                         associate-with-thread="false" 
                         connection-creation-retry-attempts="0" 
                         connection-creation-retry-interval-in-seconds="10" 
@@ -20,7 +17,7 @@
                         max-connection-usage-count="0" 
                         max-pool-size="32" 
                         max-wait-time-in-millis="60000" 
-                        name="aquariumPool" 
+                        name="java:app/aquariumPool"
                         non-transactional-connections="false" 
                         pool-resize-quantity="2" 
                         res-type="javax.sql.ConnectionPoolDataSource" 
@@ -28,8 +25,12 @@
                         steady-pool-size="8" 
                         validate-atmost-once-period-in-seconds="0" 
                         wrap-jdbc-objects="false">
-        <property name="URL" value="jdbc:mysql://localhost:3306/Aquarium?zeroDateTimeBehavior=convertToNull"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/AQUARIUM?zeroDateTimeBehavior=convertToNull"/>
         <property name="User" value="fish"/>
         <property name="Password" value="fish"/>
     </jdbc-connection-pool>
+
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/myAquarium" object-type="user" pool-name="java:app/aquariumPool">
+      <description/>
+    </jdbc-resource>
 </resources>
