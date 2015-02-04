@@ -88,7 +88,7 @@ public class FishActionBeanTest {
             e.printStackTrace();
             throw new RuntimeException("Failed seeding database", e);
         }
-        System.out.println("Build database works");
+        System.out.println("Seeding works");
     }
 
     /**
