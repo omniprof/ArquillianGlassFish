@@ -3,11 +3,8 @@
  */
 package com.kenfogel.test;
 
-import static org.assertj.core.api.Assertions.*;
-
 import com.kenfogel.beans.FishActionBeanJPA;
 import com.kenfogel.entities.Fish;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -28,12 +25,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @RunWith(Arquillian.class)
 public class FishActionBeanTest {
 
-    private static final String WEBAPP_SRC = "src/main/webapp";
-    
     @Deployment
     public static WebArchive deploy() {
 
@@ -57,8 +54,8 @@ public class FishActionBeanTest {
                 .addPackage(FishActionBeanJPA.class.getPackage())
                 .addPackage(Fish.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource(new File("src/main/setup/glassfish-resources.xml"), "resources.xml")
-                .addAsWebInfResource(new File("src/main/resources/META-INF","persistence.xml"))
+                .addAsWebInfResource(new File("src/main/setup/glassfish-resources.xml"), "glassfish-resources.xml")
+                .addAsResource(new File("src/main/resources/META-INF/persistence.xml"), "META-INF/persistence.xml")
                 .addAsResource("createFishMySQL.sql")
                 .addAsLibraries(dependencies);
 
@@ -68,7 +65,7 @@ public class FishActionBeanTest {
     @Inject
     private FishActionBeanJPA fab;
 
-    @Resource(name = "jdbc/myAquarium")
+    @Resource(name = "java:app/jdbc/myAquarium")
     private DataSource ds;
 
     /**
