@@ -1,2 +1,2 @@
-use aquarium;
+USE AQUARIUM;
 show tables;
